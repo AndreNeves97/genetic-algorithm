@@ -8,9 +8,16 @@
     "random-normal": "^1.0.0",
     "tsconfig": "^7.0.0"
   },
+  "devDependencies": {
+    "tsc": "*",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.7.4"
+  },
   "scripts": {
     "compile:watch": "tsc --watch",
     "start:watch": "nodemon --inspect dist/main.js",
-    "start": "tsc && node dist/main.js"
+    "start": "tsc && node dist/main.js",
+    "nqueens": "tsc && node dist/entry-points/n-queens.js",
+    "powell": "tsc && node dist/entry-points/powell.js"
   }
 }
