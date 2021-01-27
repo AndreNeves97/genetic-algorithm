@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "outDir": "./dist",
+    "target": "ES2018" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+    "module": "commonjs" 
+  },
+  
+  "watchOptions": {
+    // Use native file system events for files and directories
+    "watchFile": "useFsEvents",
+    "watchDirectory": "useFsEvents",
+
+    // Poll files for updates more frequently
+    // when they're updated a lot.
+    "fallbackPolling": "dynamicPriority"
+  },
+
+  "include": ["src/**/*"],  
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

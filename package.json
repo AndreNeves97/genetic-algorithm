@@ -1,0 +1,16 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "random-normal": "^1.0.0",
+    "tsconfig": "^7.0.0"
+  },
+  "scripts": {
+    "compile:watch": "tsc --watch",
+    "start:watch": "nodemon --inspect dist/main.js",
+    "start": "tsc && node dist/main.js"
+  }
+}
