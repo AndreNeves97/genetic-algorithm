@@ -1,6 +1,6 @@
 import { GeneticAlgorithm } from "../algorithms/shared/genetic-algorithm.interface";
 import { FGA } from "../algorithms/fga/fga.model";
-import { NQueensService } from "../n-queens/n-queens.service";
+import { NQueensService } from "../genetic-algorithm-applications/n-queens/n-queens.service";
 
 let geneticAlgorithm: GeneticAlgorithm = new FGA();
 

@@ -1,5 +1,5 @@
-import { Individual } from "../algorithms/shared/individual.model";
-import { Random } from "../random";
+import { Individual } from "../../algorithms/shared/individual.model";
+import { Random } from "../../random";
 
 export class RealFunctionIndividual<T>
   implements Individual<RealFunctionIndividual<T>> {

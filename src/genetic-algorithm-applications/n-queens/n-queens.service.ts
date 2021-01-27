@@ -1,6 +1,6 @@
-import { GaApplicationService } from "../algorithms/shared/genetic-algorithm-application-service.model";
+import { GaApplicationService } from "../../algorithms/shared/genetic-algorithm-application-service.model";
 import { NQueensIndividual } from "./n-queens-individual.model";
-import { Random } from "../random";
+import { Random } from "../../random";
 
 export class NQueensService implements GaApplicationService<NQueensIndividual> {
   board_size: number;

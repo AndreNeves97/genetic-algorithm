@@ -1,6 +1,6 @@
 import { GeneticAlgorithm } from "../algorithms/shared/genetic-algorithm.interface";
 import { FGA } from "../algorithms/fga/fga.model";
-import { PowellFunctionService } from "../real-functions/powell-function/powell-function.service";
+import { PowellFunctionService } from "../genetic-algorithm-applications/real-functions/powell-function/powell-function.service";
 
 let geneticAlgorithm: GeneticAlgorithm = new FGA();
 
