@@ -9,6 +9,7 @@
     "tsconfig": "^7.0.0"
   },
   "devDependencies": {
+    "@types/node": "^14.14.22",
     "tsc": "*",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
@@ -18,6 +19,7 @@
     "start:watch": "nodemon --inspect dist/main.js",
     "start": "tsc && node dist/main.js",
     "nqueens": "tsc && node dist/entry-points/n-queens.js",
-    "powell": "tsc && node dist/entry-points/powell.js"
+    "powell": "tsc && node dist/entry-points/powell.js",
+    "multiobjective": "tsc && node dist/entry-points/multi-objective.js"
   }
 }
