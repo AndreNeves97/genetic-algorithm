@@ -15,13 +15,14 @@ const result = geneticAlgorithm.execute({
   application_service: new MultiObjectiveService(QT_FUNCTIONS),
 });
 
-console.log("\n\n Result (boundaries):\n");
+console.log("\n\n\n Result (boundaries):\n");
 
 console.dir(
   result.map((boundarie) =>
     boundarie.map((individual) => ({
       name: individual.name,
       val: individual.functionValues,
+      rank: individual.rank,
     }))
   ),
   { depth: 5 }

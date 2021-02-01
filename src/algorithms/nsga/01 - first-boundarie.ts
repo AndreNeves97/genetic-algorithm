@@ -1,19 +1,6 @@
 import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
-import { Individual } from "../shared/individual.model";
 
-export function divideBoundaries(
-  candidates: MultiObjectiveIndividual[]
-): MultiObjectiveIndividual[][] {
-  const boundaries: MultiObjectiveIndividual[][] = [
-    getFirstBoundarie(candidates),
-  ];
-
-  printLogForFirstBoundarie(candidates);
-
-  return boundaries;
-}
-
-function getFirstBoundarie(
+export function getFirstBoundarie(
   candidates: MultiObjectiveIndividual[]
 ): MultiObjectiveIndividual[] {
   const boundarie: MultiObjectiveIndividual[] = [];
@@ -52,24 +39,4 @@ function evaluatePairsDominance(
       p.dominatedCount++;
     }
   });
-}
-
-function printLogForFirstBoundarie(candidates) {
-  console.log("\n\nPontos:\n");
-  console.log(
-    candidates.map((individual) => ({
-      name: individual.name,
-      val: individual.functionValues,
-    }))
-  );
-
-  console.log("\n\nLog da primeira fronteira\n");
-  console.log(
-    candidates.map((a) => ({
-      name: a.name,
-      n: a.dominatedCount,
-      set: a.dominationSet.map((g) => g.name),
-      rank: a.rank,
-    }))
-  );
 }

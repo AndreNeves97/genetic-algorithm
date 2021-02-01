@@ -1,7 +1,7 @@
 import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
 import { GeneticAlgorithmExecutionParams } from "../shared/genetic-algorithm-execution-params.model";
 import { Individual } from "../shared/individual.model";
-import { divideBoundaries } from "./divide-boundaries";
+import { divideBoundaries } from "./00 - divide-boundaries";
 
 export class NSGAService {
   constructor() {}
