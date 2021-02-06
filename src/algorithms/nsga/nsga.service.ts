@@ -1,7 +1,7 @@
 import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
 import { GeneticAlgorithmExecutionParams } from "../shared/genetic-algorithm-execution-params.model";
 import { Individual } from "../shared/individual.model";
-import { divideBoundaries } from "./00 - divide-boundaries";
+import { divideFronts } from "./00-divide-fronts";
 
 export class NSGAService {
   constructor() {}
@@ -19,7 +19,7 @@ export class NSGAService {
 
     for (let i = 0; i < params.num_generations; i++) {
       const candidates = this.generateCandidates(initial_population);
-      boundaries = divideBoundaries(candidates);
+      boundaries = divideFronts(candidates);
       // this.evaluateAllIndividuals(candidates);
     }
 

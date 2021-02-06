@@ -14,7 +14,7 @@ export class MultiObjectiveIndividual
 
   public functionValues: number[];
 
-  constructor(public points: number[]) {}
+  constructor(public genes: number[]) {}
 
   mutate(): MultiObjectiveIndividual {
     throw new Error("Method not implemented.");
@@ -30,7 +30,7 @@ export class MultiObjectiveIndividual
     }
 
     this.functionValues = Array.from({ length: 2 }, (_, index) =>
-      this.evaluatePoint(this.points[0], index)
+      this.evaluatePoint(this.genes[0], index)
     );
 
     return this.functionValues;

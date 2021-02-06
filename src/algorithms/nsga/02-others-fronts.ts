@@ -1,7 +1,6 @@
 import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
 
-export function getAllBoundaries(
-  canditates: MultiObjectiveIndividual[],
+export function getAllFronts(
   firstBoundarie: MultiObjectiveIndividual[]
 ): MultiObjectiveIndividual[][] {
   const boundaries: MultiObjectiveIndividual[][] = [firstBoundarie];
