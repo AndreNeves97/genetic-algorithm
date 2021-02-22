@@ -10,13 +10,15 @@ export class MultiObjectiveService
   ) {}
 
   getIndividuals(number: number): MultiObjectiveIndividual[] {
+    const labels = ["A", "B", "C", "D"];
+
     let individuals = Array.from({ length: number }, (v, k) => {
       const genes: number[] = Array.from(
         { length: this.functionsDimensions },
         () => k
       );
 
-      return new MultiObjectiveIndividual(genes, this.functions);
+      return new MultiObjectiveIndividual(genes, this.functions, labels[k]);
     });
 
     return individuals;
@@ -27,6 +29,6 @@ export class MultiObjectiveService
       Random.getDouble(-5, 5)
     );
 
-    return new MultiObjectiveIndividual(genes, this.functions);
+    return new MultiObjectiveIndividual(genes, this.functions, "");
   }
 }

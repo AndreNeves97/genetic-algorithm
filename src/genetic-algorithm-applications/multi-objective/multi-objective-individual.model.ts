@@ -6,15 +6,19 @@ export class MultiObjectiveIndividual
   evaluate: number;
   value: number;
 
-  name: string;
-
   dominationSet: MultiObjectiveIndividual[];
   dominatedCount: number;
   rank: number;
 
+  distance: number;
+
   public functionValues: number[];
 
-  constructor(public genes: number[], public functions: Function[]) {}
+  constructor(
+    public genes: number[],
+    public functions: Function[],
+    public label: string
+  ) {}
 
   mutate(): MultiObjectiveIndividual {
     throw new Error("Method not implemented.");

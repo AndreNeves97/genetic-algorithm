@@ -1,6 +1,7 @@
 import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
 import { GeneticAlgorithmExecutionParams } from "../shared/genetic-algorithm-execution-params.model";
 import { Individual } from "../shared/individual.model";
+import { setCrowdingDistanceAssignment } from "./crowding-disitance-assignment/crowding-distance-assignment";
 import { divideFronts } from "./fast-non-dominated-sort/00-divide-fronts";
 
 export class NSGAService {
@@ -20,7 +21,9 @@ export class NSGAService {
 
       // fronts = divideFronts(candidates);
       this.evaluateAllIndividuals(candidates);
-      console.log("candidates", candidates);
+      setCrowdingDistanceAssignment(candidates);
+
+      // console.log("candidates", candidates);
     }
 
     // console.log("initial population", initial_population);
