@@ -1,19 +1,32 @@
+import { GaApplicationService } from "../../algorithms/shared/genetic-algorithm-application-service.model";
 import { Random } from "../../random";
 import { MultiObjectiveIndividual } from "./multi-objective-individual.model";
 
-export class MultiObjectiveService {
-  constructor(public qtFunctions: number) {}
+export class MultiObjectiveService
+  implements GaApplicationService<MultiObjectiveIndividual> {
+  constructor(
+    public functionsDimensions: number,
+    public functions: Function[]
+  ) {}
 
-  getIndividuals(): MultiObjectiveIndividual[] {
-    let individuals = Array.from({ length: 20 }, () => this.getIndividual());
+  getIndividuals(number: number): MultiObjectiveIndividual[] {
+    let individuals = Array.from({ length: number }, (v, k) => {
+      const genes: number[] = Array.from(
+        { length: this.functionsDimensions },
+        () => k
+      );
+
+      return new MultiObjectiveIndividual(genes, this.functions);
+    });
+
     return individuals;
   }
 
-  getIndividual(): MultiObjectiveIndividual {
-    const genes: number[] = Array.from({ length: 1 }, () =>
+  getIndividual(num_genes: number): MultiObjectiveIndividual {
+    const genes: number[] = Array.from({ length: num_genes }, () =>
       Random.getDouble(-5, 5)
     );
 
-    return new MultiObjectiveIndividual(genes);
+    return new MultiObjectiveIndividual(genes, this.functions);
   }
 }

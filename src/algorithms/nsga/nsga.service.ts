@@ -9,18 +9,18 @@ export class NSGAService {
   execute(params: GeneticAlgorithmExecutionParams) {
     const service = params.application_service;
 
-    // let initial_population: MultiObjectiveIndividual[] = service.getIndividuals(
-    //   params.population_size
-    // );
-
-    let initial_population: MultiObjectiveIndividual[] = this.getMockCandidates();
+    let initial_population: MultiObjectiveIndividual[] = service.getIndividuals(
+      params.population_size
+    );
 
     let fronts;
 
     for (let i = 0; i < params.num_generations; i++) {
       const candidates = this.generateCandidates(initial_population);
-      fronts = divideFronts(candidates);
-      // this.evaluateAllIndividuals(candidates);
+
+      // fronts = divideFronts(candidates);
+      this.evaluateAllIndividuals(candidates);
+      console.log("candidates", candidates);
     }
 
     // console.log("initial population", initial_population);
@@ -39,25 +39,6 @@ export class NSGAService {
     ];
 
     return current_generation;
-  }
-
-  getMockCandidates(): MultiObjectiveIndividual[] {
-    const names = ["A", "B", "C", "D", "E", "F"];
-
-    return [
-      [1, 5],
-      [2, 3],
-      [4, 1],
-      [3, 4],
-      [4, 3],
-      [5, 5],
-    ].map((functionValues, i) => {
-      const individual = new MultiObjectiveIndividual([null, null]);
-      individual.functionValues = functionValues;
-      individual.name = names[i];
-
-      return individual;
-    });
   }
 
   evaluateAllIndividuals(individuals: Individual<any>[]) {

@@ -14,7 +14,7 @@ export class MultiObjectiveIndividual
 
   public functionValues: number[];
 
-  constructor(public genes: number[]) {}
+  constructor(public genes: number[], public functions: Function[]) {}
 
   mutate(): MultiObjectiveIndividual {
     throw new Error("Method not implemented.");
@@ -29,8 +29,9 @@ export class MultiObjectiveIndividual
       return this.functionValues;
     }
 
-    this.functionValues = Array.from({ length: 2 }, (_, index) =>
-      this.evaluatePoint(this.genes[0], index)
+    this.functionValues = Array.from(
+      { length: this.functions.length },
+      (_, i) => this.functions[i].apply(this, this.genes)
     );
 
     return this.functionValues;
@@ -38,18 +39,6 @@ export class MultiObjectiveIndividual
 
   debugEvaluate() {
     throw new Error("Method not implemented.");
-  }
-
-  evaluatePoint(value, functionIndex) {
-    if (functionIndex === 0) {
-      return Math.pow(value, 2);
-    }
-
-    if (functionIndex === 1) {
-      return Math.pow(value - 1, 2);
-    }
-
-    return null;
   }
 
   dominates(other: MultiObjectiveIndividual): boolean {

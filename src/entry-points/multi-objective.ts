@@ -7,23 +7,37 @@ import { MultiObjectiveService } from "../genetic-algorithm-applications/multi-o
 // let geneticAlgorithm: GeneticAlgorithm = new NSGA();
 let geneticAlgorithm = new NSGAService();
 
-const QT_FUNCTIONS = 2;
+const FUNCTIONS_DIMENSIONS = 1;
+
+const functions = [
+  (i) => {
+    const values = [1, 2, 4, 1.5];
+    return values[i];
+  },
+  (i) => {
+    const values = [5, 3, 1, 4];
+    return values[i];
+  },
+];
 
 const result = geneticAlgorithm.execute({
-  population_size: 20,
+  population_size: 4,
   num_generations: 1,
-  application_service: new MultiObjectiveService(QT_FUNCTIONS),
+  application_service: new MultiObjectiveService(
+    FUNCTIONS_DIMENSIONS,
+    functions
+  ),
 });
 
-console.log("\n\n\n Result (Fronts):\n");
+// console.log("\n\n\n Result (Fronts):\n");
 
-console.dir(
-  result.fronts.map((front) =>
-    front.map((individual) => ({
-      name: individual.name,
-      val: individual.functionValues,
-      rank: individual.rank,
-    }))
-  ),
-  { depth: 5 }
-);
+// console.dir(
+//   result.fronts.map((front) =>
+//     front.map((individual) => ({
+//       name: individual.name,
+//       val: individual.functionValues,
+//       rank: individual.rank,
+//     }))
+//   ),
+//   { depth: 5 }
+// );
