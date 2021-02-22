@@ -1,18 +1,18 @@
-import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
-import { getFirstBoundarie } from "./01-first-fronts";
+import { MultiObjectiveIndividual } from "../../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
+import { getFirstFront } from "./01-first-fronts";
 import { getAllFronts } from "./02-others-fronts";
 
 export function divideFronts(
   candidates: MultiObjectiveIndividual[]
 ): MultiObjectiveIndividual[][] {
-  const firstBoundarie = getFirstBoundarie(candidates);
+  const firstFront = getFirstFront(candidates);
 
-  printLogForFirstBoundarie(candidates);
+  printLogForFirstFront(candidates);
 
-  return getAllFronts(firstBoundarie);
+  return getAllFronts(firstFront);
 }
 
-function printLogForFirstBoundarie(candidates) {
+function printLogForFirstFront(candidates) {
   console.log("\n\nPontos:\n");
   console.log(
     candidates.map((individual) => ({

@@ -1,9 +1,9 @@
-import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
+import { MultiObjectiveIndividual } from "../../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
 
-export function getFirstBoundarie(
+export function getFirstFront(
   candidates: MultiObjectiveIndividual[]
 ): MultiObjectiveIndividual[] {
-  const boundarie: MultiObjectiveIndividual[] = [];
+  const front: MultiObjectiveIndividual[] = [];
 
   candidates.forEach((p) => {
     p.dominationSet = [];
@@ -14,11 +14,11 @@ export function getFirstBoundarie(
 
     if (p.dominatedCount === 0) {
       p.rank = 1;
-      boundarie.push(p);
+      front.push(p);
     }
   });
 
-  return boundarie;
+  return front;
 }
 
 function evaluatePairsDominance(

@@ -1,8 +1,12 @@
 Nome: André Marcelino de Souza Neves
 
-# Trabalho de algoritmos genéticos
+# Algoritmos genéticos
 
-- Contém a implementação do problema de n-rainhas
+- Contém implementações de algoritmos genéticos;
+  - n-rainhas
+  - implementação de função real (powell function)
+  - problemas de otimização multi objetivos
+
 
 
 
@@ -18,4 +22,4 @@ Nome: André Marcelino de Souza Neves
   - `yarn install` 
     - Atualizar dependências
   - `yarn start` 
-    - Executar aplicação
+    - Executar aplicação de resolução de problemas multiobjetivos: divisão de fronteiras

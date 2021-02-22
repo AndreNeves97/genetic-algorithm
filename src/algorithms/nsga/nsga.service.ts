@@ -1,7 +1,7 @@
 import { MultiObjectiveIndividual } from "../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
 import { GeneticAlgorithmExecutionParams } from "../shared/genetic-algorithm-execution-params.model";
 import { Individual } from "../shared/individual.model";
-import { divideFronts } from "./00-divide-fronts";
+import { divideFronts } from "./fast-non-dominated-sort/00-divide-fronts";
 
 export class NSGAService {
   constructor() {}
@@ -15,17 +15,17 @@ export class NSGAService {
 
     let initial_population: MultiObjectiveIndividual[] = this.getMockCandidates();
 
-    let boundaries;
+    let fronts;
 
     for (let i = 0; i < params.num_generations; i++) {
       const candidates = this.generateCandidates(initial_population);
-      boundaries = divideFronts(candidates);
+      fronts = divideFronts(candidates);
       // this.evaluateAllIndividuals(candidates);
     }
 
     // console.log("initial population", initial_population);
 
-    return boundaries;
+    return { fronts: fronts };
   }
 
   generateCandidates(initial_population: Individual<any>[]) {
