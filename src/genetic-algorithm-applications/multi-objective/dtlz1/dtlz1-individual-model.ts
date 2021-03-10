@@ -10,9 +10,23 @@ export class Dtlz1Individual extends MultiObjectiveIndividual {
   }
 
   recombine(father2: Dtlz1Individual): Dtlz1Individual[] {
-    return this.crossoverBlxAlpha(father2).map(
-      (genes) => new Dtlz1Individual(genes, this.num_objectives)
-    );
+    return this.crossoverBlxAlpha(father2).map((genes) => {
+      const adjustedValues = genes.map((value) => this.trimValue(value));
+
+      return new Dtlz1Individual(adjustedValues, this.num_objectives);
+    });
+  }
+
+  trimValue(value) {
+    if (value < 0) {
+      return 0;
+    }
+
+    if (value > 1) {
+      return 1;
+    }
+
+    return value;
   }
 
   getEvaluate() {

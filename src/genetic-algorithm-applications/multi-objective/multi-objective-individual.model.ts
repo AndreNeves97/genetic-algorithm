@@ -31,7 +31,6 @@ export abstract class MultiObjectiveIndividual
 
     father1.genes.forEach((gene_value, i) => {
       const alpha = Random.getGaussian();
-
       const diff = Math.abs(gene_value - father2.genes[i]);
 
       child1[i] = gene_value + alpha * diff;

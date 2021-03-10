@@ -27,7 +27,7 @@ export function setCrowdingDistanceAssignment(
       T[i].distance = T[i].distance + aux;
     }
 
-    printLogForObjective(m, T);
+    // printLogForObjective(m, T);
   }
 }
 

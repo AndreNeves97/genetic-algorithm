@@ -18,24 +18,25 @@ export class NSGAService {
       const candidates = this.generateCandidates(initial_population);
       this.evaluateAllIndividuals(candidates);
 
-      console.log("\n\n Candidates:\n\n", candidates);
-
       const fronts = divideFronts(candidates);
-      console.log(
-        "Fronts: \n",
-        fronts.map((front) => front.map((p) => p.label))
-      );
+
+      this.printGenerationLog(initial_population);
 
       initial_population = this.getNextGenenration(
         fronts,
         params.population_size
       );
-
-      console.log(
-        "\n\nnext generation",
-        initial_population.map((a) => a.label)
-      );
     }
+
+    console.log("\n\nUltima geração:\n\n");
+    this.printGenerationLog(initial_population);
+  }
+
+  printGenerationLog(population: MultiObjectiveIndividual[]) {
+    console.log("\n");
+    console.log(
+      population.map((a) => a.functionValues.map((value) => value.toFixed(2)))
+    );
   }
 
   getNextGenenration(fronts, n): MultiObjectiveIndividual[] {
@@ -43,25 +44,31 @@ export class NSGAService {
 
     let i = 0;
 
-    while (next_generation.length + fronts[i].length <= n) {
+    while (
+      i < fronts.length &&
+      next_generation.length + fronts[i].length <= n
+    ) {
       next_generation.push(...fronts[i]);
       i++;
     }
 
-    setCrowdingDistanceAssignment(fronts[i]);
-    fronts[i].sort((a, b) => b.distance - a.distance);
+    if (i < fronts.length) {
+      setCrowdingDistanceAssignment(fronts[i]);
 
-    const remaining_individuals_next_generation = n - next_generation.length;
+      fronts[i].sort((a, b) => b.distance - a.distance);
 
-    next_generation.push(
-      ...fronts[i].slice(0, remaining_individuals_next_generation)
-    );
+      const remaining_individuals_next_generation = n - next_generation.length;
+
+      next_generation.push(
+        ...fronts[i].slice(0, remaining_individuals_next_generation)
+      );
+    }
 
     return next_generation;
   }
 
   generateCandidates(initial_population: Individual<any>[]) {
-    const recombinated = [];
+    const recombinated = this.generateRecombinated(initial_population);
     const mutated = [];
 
     const current_generation = [
@@ -71,6 +78,22 @@ export class NSGAService {
     ];
 
     return current_generation;
+  }
+
+  generateRecombinated(
+    initial_population: Individual<any>[]
+  ): Individual<any>[] {
+    let recombinated = [];
+
+    for (let i = 1; i < initial_population.length; i += 2) {
+      const father1 = initial_population[i - 1];
+      const father2 = initial_population[i];
+
+      const new_individuals = father1.recombine(father2);
+      recombinated = [...recombinated, ...new_individuals];
+    }
+
+    return recombinated;
   }
 
   evaluateAllIndividuals(individuals: Individual<any>[]) {

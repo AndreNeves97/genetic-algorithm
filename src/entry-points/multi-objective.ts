@@ -11,7 +11,7 @@ const FUNCTIONS_DIMENSIONS = 7;
 const NUM_OBJECTIVES = 3;
 
 const result = geneticAlgorithm.execute({
-  population_size: 20,
-  num_generations: 1,
+  population_size: 50,
+  num_generations: 10000,
   application_service: new Dtlz1Service(FUNCTIONS_DIMENSIONS, NUM_OBJECTIVES),
 });

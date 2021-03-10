@@ -25,5 +25,5 @@ export function getAllFronts(
     fronts[i] = newFront;
   }
 
-  return fronts;
+  return fronts.filter((front) => front.length > 0);
 }
