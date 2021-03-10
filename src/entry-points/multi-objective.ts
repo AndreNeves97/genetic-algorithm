@@ -2,43 +2,16 @@ import { GeneticAlgorithm } from "../algorithms/shared/genetic-algorithm.interfa
 import { FGA } from "../algorithms/fga/fga.model";
 import { PowellFunctionService } from "../genetic-algorithm-applications/real-functions/powell-function/powell-function.service";
 import { NSGAService } from "../algorithms/nsga/nsga.service";
-import { MultiObjectiveService } from "../genetic-algorithm-applications/multi-objective/multi-objective.service";
+import { Dtlz1Service } from "../genetic-algorithm-applications/multi-objective/dtlz1/dtlz1.service";
 
 // let geneticAlgorithm: GeneticAlgorithm = new NSGA();
 let geneticAlgorithm = new NSGAService();
 
-const FUNCTIONS_DIMENSIONS = 1;
-
-const functions = [
-  (i) => {
-    const values = [1, 2, 4, 3, 4, 5];
-    return values[i];
-  },
-  (i) => {
-    const values = [5, 3, 1, 4, 3, 5];
-    return values[i];
-  },
-];
+const FUNCTIONS_DIMENSIONS = 7;
+const NUM_OBJECTIVES = 3;
 
 const result = geneticAlgorithm.execute({
-  population_size: 6,
-  next_generation_size: 4,
+  population_size: 20,
   num_generations: 1,
-  application_service: new MultiObjectiveService(
-    FUNCTIONS_DIMENSIONS,
-    functions
-  ),
+  application_service: new Dtlz1Service(FUNCTIONS_DIMENSIONS, NUM_OBJECTIVES),
 });
-
-// console.log("\n\n\n Result (Fronts):\n");
-
-// console.dir(
-//   result.fronts.map((front) =>
-//     front.map((individual) => ({
-//       name: individual.name,
-//       val: individual.functionValues,
-//       rank: individual.rank,
-//     }))
-//   ),
-//   { depth: 5 }
-// );
