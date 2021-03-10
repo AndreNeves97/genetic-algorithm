@@ -1,6 +1,6 @@
 import { MultiObjectiveIndividual } from "../../../genetic-algorithm-applications/multi-objective/multi-objective-individual.model";
-import { getFirstFront } from "./01-first-fronts";
-import { getAllFronts } from "./02-others-fronts";
+import { getFirstFront } from "./01-get-first-front";
+import { getAllFronts } from "./02-get-all-fronts";
 
 export function divideFronts(
   candidates: MultiObjectiveIndividual[]
