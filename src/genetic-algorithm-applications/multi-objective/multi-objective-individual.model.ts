@@ -3,7 +3,6 @@ import { Random } from "../../random";
 
 export abstract class MultiObjectiveIndividual
   implements Individual<MultiObjectiveIndividual> {
-  evaluate: number;
   value: number;
 
   dominationSet: MultiObjectiveIndividual[];

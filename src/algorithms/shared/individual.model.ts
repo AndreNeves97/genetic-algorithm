@@ -1,5 +1,5 @@
 export interface Individual<T> {
-  evaluate: number;
+  evaluate?: number;
   value: number;
 
   mutate(): T;

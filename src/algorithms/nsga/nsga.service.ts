@@ -28,7 +28,7 @@ export class NSGAService {
 
       initial_population = this.getNextGenenration(
         fronts,
-        params.next_generation_size
+        params.population_size
       );
 
       console.log(
