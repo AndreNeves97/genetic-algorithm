@@ -3,7 +3,7 @@ import { MultiObjectiveIndividual } from "../../../genetic-algorithm-application
 export function setCrowdingDistanceAssignment(
   candidates: MultiObjectiveIndividual[]
 ) {
-  const objectives = candidates[0].functions.length;
+  const objectives = candidates[0].functionValues.length;
 
   const l = candidates.length;
 

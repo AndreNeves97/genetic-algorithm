@@ -1,8 +1,8 @@
 import { Individual } from "../../algorithms/shared/individual.model";
+import { Random } from "../../random";
 
-export class MultiObjectiveIndividual
+export abstract class MultiObjectiveIndividual
   implements Individual<MultiObjectiveIndividual> {
-  //
   evaluate: number;
   value: number;
 
@@ -14,32 +14,35 @@ export class MultiObjectiveIndividual
 
   public functionValues: number[];
 
-  constructor(
-    public genes: number[],
-    public functions: Function[],
-    public label: string
-  ) {}
+  constructor(public genes: number[], public label: string) {}
 
-  mutate(): MultiObjectiveIndividual {
-    throw new Error("Method not implemented.");
+  abstract mutate(): MultiObjectiveIndividual;
+
+  abstract recombine(
+    father2: MultiObjectiveIndividual
+  ): MultiObjectiveIndividual[];
+
+  crossoverBlxAlpha(father2: MultiObjectiveIndividual): number[][] {
+    const father1 = this;
+
+    const num_dimensions = this.genes.length;
+
+    const child1: number[] = new Array(num_dimensions);
+    const child2: number[] = new Array(num_dimensions);
+
+    father1.genes.forEach((gene_value, i) => {
+      const alpha = Random.getGaussian();
+
+      const diff = Math.abs(gene_value - father2.genes[i]);
+
+      child1[i] = gene_value + alpha * diff;
+      child2[i] = father2.genes[i] + alpha * diff;
+    });
+
+    return [child1, child2];
   }
 
-  recombine(father2: MultiObjectiveIndividual): MultiObjectiveIndividual[] {
-    throw new Error("Method not implemented.");
-  }
-
-  getEvaluate() {
-    if (!!this.functionValues) {
-      return this.functionValues;
-    }
-
-    this.functionValues = Array.from(
-      { length: this.functions.length },
-      (_, i) => this.functions[i].apply(this, this.genes)
-    );
-
-    return this.functionValues;
-  }
+  abstract getEvaluate();
 
   debugEvaluate() {
     throw new Error("Method not implemented.");
