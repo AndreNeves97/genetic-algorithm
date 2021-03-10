@@ -14,21 +14,50 @@ export class NSGAService {
       params.population_size
     );
 
-    let fronts;
-
-    for (let i = 0; i < params.num_generations; i++) {
+    for (let t = 0; t < params.num_generations; t++) {
       const candidates = this.generateCandidates(initial_population);
-
-      // fronts = divideFronts(candidates);
       this.evaluateAllIndividuals(candidates);
-      setCrowdingDistanceAssignment(candidates);
 
-      // console.log("candidates", candidates);
+      console.log("\n\n Candidates:\n\n", candidates);
+
+      const fronts = divideFronts(candidates);
+      console.log(
+        "Fronts: \n",
+        fronts.map((front) => front.map((p) => p.label))
+      );
+
+      initial_population = this.getNextGenenration(
+        fronts,
+        params.next_generation_size
+      );
+
+      console.log(
+        "\n\nnext generation",
+        initial_population.map((a) => a.label)
+      );
+    }
+  }
+
+  getNextGenenration(fronts, n): MultiObjectiveIndividual[] {
+    const next_generation = [];
+
+    let i = 0;
+
+    while (next_generation.length + fronts[i].length <= n) {
+      next_generation.push(...fronts[i]);
+      i++;
     }
 
-    // console.log("initial population", initial_population);
+    setCrowdingDistanceAssignment(fronts[i]);
+    fronts[i].sort((a, b) => b.distance - a.distance);
 
-    return { fronts: fronts };
+    const remaining_individuals_next_generation = n - next_generation.length;
+
+    next_generation.push(
+      ...fronts[i].slice(0, remaining_individuals_next_generation)
+    );
+
+    return next_generation;
   }
 
   generateCandidates(initial_population: Individual<any>[]) {

@@ -2,6 +2,7 @@ import { GaApplicationService } from "./genetic-algorithm-application-service.mo
 
 export interface GeneticAlgorithmExecutionParams {
   population_size: number;
+  next_generation_size?: number;
   num_generations: number;
   elite_size?: number;
   application_service: GaApplicationService<any>;

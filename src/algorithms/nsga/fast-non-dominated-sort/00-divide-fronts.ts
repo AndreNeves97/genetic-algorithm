@@ -7,7 +7,7 @@ export function divideFronts(
 ): MultiObjectiveIndividual[][] {
   const firstFront = getFirstFront(candidates);
 
-  printLogForFirstFront(candidates);
+  // printLogForFirstFront(candidates);
 
   return getAllFronts(firstFront);
 }
@@ -16,7 +16,7 @@ function printLogForFirstFront(candidates) {
   console.log("\n\nPontos:\n");
   console.log(
     candidates.map((individual) => ({
-      name: individual.name,
+      label: individual.label,
       val: individual.functionValues,
     }))
   );
@@ -24,9 +24,9 @@ function printLogForFirstFront(candidates) {
   console.log("\n\n\nLog da primeira fronteira\n");
   console.log(
     candidates.map((a) => ({
-      name: a.name,
+      label: a.label,
       n: a.dominatedCount,
-      set: a.dominationSet.map((g) => g.name),
+      set: a.dominationSet.map((g) => g.label),
       rank: a.rank,
     }))
   );

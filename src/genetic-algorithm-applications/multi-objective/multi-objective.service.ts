@@ -10,7 +10,7 @@ export class MultiObjectiveService
   ) {}
 
   getIndividuals(number: number): MultiObjectiveIndividual[] {
-    const labels = ["A", "B", "C", "D"];
+    const labels = ["A", "B", "C", "D", "E", "F"];
 
     let individuals = Array.from({ length: number }, (v, k) => {
       const genes: number[] = Array.from(

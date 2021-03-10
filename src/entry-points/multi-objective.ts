@@ -11,17 +11,18 @@ const FUNCTIONS_DIMENSIONS = 1;
 
 const functions = [
   (i) => {
-    const values = [1, 2, 4, 1.5];
+    const values = [1, 2, 4, 3, 4, 5];
     return values[i];
   },
   (i) => {
-    const values = [5, 3, 1, 4];
+    const values = [5, 3, 1, 4, 3, 5];
     return values[i];
   },
 ];
 
 const result = geneticAlgorithm.execute({
-  population_size: 4,
+  population_size: 6,
+  next_generation_size: 4,
   num_generations: 1,
   application_service: new MultiObjectiveService(
     FUNCTIONS_DIMENSIONS,
